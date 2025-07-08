@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plenix Clash Server</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      padding: 20px;
+      color: #fff;
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      background: #000; /* Warna background hitam */
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 36px;
+      background: linear-gradient(to right, #ff3333, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #ddd;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      width: 250px;
+      padding: 15px;
+      margin: 10px auto;
+      font-size: 18px;
+      color: #fff;
+      background-color: #28a745;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button:disabled {
+      background-color: #777;
+      cursor: not-allowed;
+    }
+
+    #timer {
+      color: #ccc;
+      margin-top: 15px;
+      font-size: 16px;
+    }
+
+    .icons {
+      margin-top: 40px;
+    }
+
+    .icons a {
+      margin: 0 15px;
+      display: inline-block;
+    }
+
+    .icons img {
+      width: 32px;
+      height: 32px;
+      filter: brightness(1000%);
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="bubbleCanvas"></canvas>
+
+  <h1>Plenix Clash Server</h1>
+  <p>Server COC private terbaik untuk pengalaman bermain yang luar biasa</p>
+
+  <button class="button" id="serverBtn" onclick="handleServerClick()">COC Private Server</button>
+  <div id="timer" style="display: none;"></div>
+
+  <button class="button" id="subscribeBtn" onclick="handleSubscribeClick()">Subscribe</button>
+
+  <div class="icons">
+    <a href="https://facebook.com/groups/1007323903742886/" target="_blank">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook">
+    </a>
+    <a href="https://t.me/sultangenecy" target="_blank">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram">
+    </a>
+    <a href="mailto:sultanputraymd@gmail.com">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Email">
+    </a>
+  </div>
+
+  <!-- Musik dari YouTube (iframe tersembunyi) -->
+  <iframe width="0" height="0"
+    src="https://www.youtube.com/embed/OH5473CdRNQ?autoplay=1&loop=1&playlist=OH5473CdRNQ"
+    frameborder="0" allow="autoplay"></iframe>
+
+  <script>
+    let clicked = false;
+
+    function handleSubscribeClick() {
+      const btn = document.getElementById('subscribeBtn');
+      btn.disabled = true;
+      btn.innerText = 'Subscribed';
+      window.open('https://youtube.com/@szuniqs?si=WzRUHTzCOWXDVNfQ', '_blank');
+    }
+
+    function handleServerClick() {
+      const btn = document.getElementById('serverBtn');
+      const timer = document.getElementById('timer');
+
+      if (!clicked) {
+        window.open('https://pl26969869.profitableratecpm.com/83/42/81/8342811b53fd76ac11d6fbea25b51698.js', '_blank')
+        btn.style.backgroundColor = '#28a745';
+        btn.innerText = 'Mengalihkan...';
+        clicked = true;
+
+        let countdown = 15;
+        timer.style.display = 'block';
+        timer.innerText = `Menuju link dalam ${countdown} detik...`;
+
+        const interval = setInterval(() => {
+          countdown--;
+          timer.innerText = `Menuju link dalam ${countdown} detik...`;
+          if (countdown === 0) {
+            clearInterval(interval);
+            btn.innerText = 'Download Sekarang';
+            btn.style.backgroundColor = '#007bff';
+            btn.onclick = () => {
+              window.location.href = 'https://cdn-s3.clashofmagic.net/magic-client/Magic_S2-17.126-R3.apk';
+            };
+            timer.innerText = '';
+          }
+        }, 1000);
+      }
+    }
+
+    // Bubble animation
+    const canvas = document.getElementById('bubbleCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let bubbles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function createBubble() {
+      return {
+        x: Math.random() * canvas.width,
+        y: canvas.height + Math.random() * 100,
+        radius: Math.random() * 20 + 10,
+        speed: Math.random() * 1 + 0.5,
+        color: `hsl(${Math.random() * 360}, 70%, 60%)`
+      };
+    }
+
+    for (let i = 0; i < 50; i++) {
+      bubbles.push(createBubble());
+    }
+
+    function animateBubbles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let b of bubbles) {
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+        ctx.fillStyle = b.color;
+        ctx.fill();
+        b.y -= b.speed;
+
+        if (b.y + b.radius < 0) {
+          Object.assign(b, createBubble());
+          b.y = canvas.height + b.radius;
+        }
+      }
+
+      requestAnimationFrame(animateBubbles);
+    }
+
+    animateBubbles();
+  </script>
+</body>
+</html>
